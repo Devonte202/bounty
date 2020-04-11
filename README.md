@@ -10,3 +10,7 @@ To install clone this repo, then in your terminal run `npm install`
 ### How to Run
 
 To run this app navigate to the root directory and run `npm start` in your terminal
+
+### Notes
+
+Before adding new code be sure to run `npx eslint fileName.js` and correct any errors before submitting a PR. 
