@@ -4,14 +4,14 @@ const path = require('path');
 const User = require('../methods/User');
 
 const createUser = (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, username, email, password, address } = req.body;
 
   const saltRounds = 8;
   bcrypt.hash(password, saltRounds)
     .then((hashedPassword) => {
-      User.createUser(name, email, hashedPassword);
+      User.createUser(name, username, email, hashedPassword, address);
       return jwt.sign({
-        name,
+        username,
         email,
         password,
         exp: Math.floor(Date.now() / 1000) + (15 * 60),
