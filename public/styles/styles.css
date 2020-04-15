@@ -1,0 +1,11 @@
+.jumbotron{
+    height: 500px;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://tinyurl.com/vmgxlem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jumbo-text{
+    color: white;
+}
