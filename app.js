@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const userController = require('./controllers/users');
-const path = require('path');
+const userController = require('./controllers/users')
+const path = require('path')
 const port = process.env.PORT || 8080
 
 app.use(bodyParser.json())
@@ -21,6 +21,7 @@ app.get('/register', userController.getRegisterPage)
 app.post('/api/register', userController.createUser)
 
 app.post('/api/login', userController.verifyUser)
+
 
 app.listen(port, () => {
 	console.log(`Now listening on port ${port}`)

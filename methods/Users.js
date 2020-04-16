@@ -12,9 +12,9 @@ class User {
       .then((data) => data.rows[0]);
   }
 
-  static getLastCreatedUser() {
+  static getLastCreatedUser(req, res) {
     const queryText = 'SELECT * FROM users ORDER BY id DESC LIMIT 1;';
-    return db.query(queryText);
+    return res.send(db.query(queryText));
   }
 }
 
