@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const userController = require('./controllers/users');
 const path = require('path');
 const port = process.env.PORT || 8080
-const path = require('path')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
