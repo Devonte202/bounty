@@ -1,0 +1,27 @@
+.jumbotron{
+    height: 500px;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://tinyurl.com/vmgxlem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jumbo-text{
+    color: white;
+}
+
+.jumbo-text-box{
+    text-align: center;
+    border: 10px solid white;
+    height: 150px;
+    width: 350px;
+    padding-top: 1.5%;
+}
+
+.text{
+    margin-top: 30px;
+}
+
+.tile{
+    margin-bottom: 15px;
+}
