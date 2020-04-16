@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const path = require('path');
-const User = require('../methods/User');
+const User = require('../methods/Users');
 
 const createUser = (req, res) => {
   const { name, username, email, password, address } = req.body;
