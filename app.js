@@ -24,6 +24,12 @@ app.get('/register', (req, res) =>{
   res.sendFile(path.join(__dirname ,'public/views' , 'register.html'))
 })
 
+app.post('/api/register',userController.createUser);
+
+app.post('/api/login', userController.verifyUser);
+
+app.get('/api/logout', userController.logout);
+
 app.listen(port, () => {
 	console.log(`Now listening on port ${port}`)
 })
