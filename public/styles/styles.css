@@ -9,3 +9,19 @@
 .jumbo-text{
     color: white;
 }
+
+.jumbo-text-box{
+    text-align: center;
+    border: 10px solid white;
+    height: 150px;
+    width: 350px;
+    padding-top: 1.5%;
+}
+
+.text{
+    margin-top: 30px;
+}
+
+.tile{
+    margin-bottom: 15px;
+}

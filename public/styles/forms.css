@@ -1,0 +1,10 @@
+form{
+    width: 30%;
+}
+
+.form-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
