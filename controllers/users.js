@@ -53,7 +53,7 @@ const authenticate = async(req, res, next) => {
   }
 };
 
-const verifyUser = async(req, res, next) => {
+const verifyUser = async(req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.getUserByEmail(email);
@@ -61,17 +61,18 @@ const verifyUser = async(req, res, next) => {
       return res.status(403).send('User does not exist.');
     }
 
-    req.body.userId = user.id;
+    req.body.userId = user.user_id;
 
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    const isValidPassword = await bcrypt.compare(password, user.hashed_password);
 
     if (isValidPassword) {
       return jwt.sign({
-        userId: user.id,
+        userId: user.user_id,
         email,
         password,
         expiresIn: '1h',
       }, 'Do Not Open', (err, encryptedPayload) => {
+        console.log(encryptedPayload)
         res.cookie('userToken', encryptedPayload, { httpOnly: true });
         res.redirect('/');
       });
@@ -86,18 +87,7 @@ const verifyUser = async(req, res, next) => {
 
 const getRegisterPage = (req, res) => {
   res.sendFile(path.join(__dirname ,'../public/views' , 'register.html'))
-<<<<<<< HEAD
 }
-
-const getLoginPage = (req, res) => {
-  res.sendFile(path.join(__dirname ,'../public/views' , 'login.html'))
-}
-
-const loadHomePage = (req, res) => {
-  res.sendFile(path.join(__dirname ,'../public/views' , 'index.html'))
-}
-=======
-};
 
 const getLoginPage = (req, res) => {
   res.sendFile(path.join(__dirname ,'../public/views' , 'login.html'))
@@ -106,7 +96,7 @@ const getLoginPage = (req, res) => {
 const getHomePage = (req, res) => {
   res.sendFile(path.join(__dirname ,'../public/views' , 'index.html'))
 };
->>>>>>> origin/master
+
 
 const logout = (req, res) => {
   res.clearCookie('userToken');
@@ -119,10 +109,6 @@ module.exports = {
   verifyUser,
   getRegisterPage,
   getLoginPage,
-<<<<<<< HEAD
-  loadHomePage,
-=======
   getHomePage,
->>>>>>> origin/master
   logout,
 };
