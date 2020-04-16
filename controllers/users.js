@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const path = require('path');
-const User = require('../methods/User');
+const User = require('../methods/Users');
 
 const createUser = (req, res) => {
   const { name, username, email, password, address } = req.body;
@@ -84,17 +84,17 @@ const verifyUser = async(req, res, next) => {
   }
 };
 
-// const getRegisterPage = (req, res) => {
-//   res.sendFile(path.join(__dirname, '../views', 'register.html'));
-// };
+const getRegisterPage = (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/views' , 'register.html'))
+}
 
-// const getLoginPage = (req, res) => {
-//   res.sendFile(path.join(__dirname, '../views', 'login.html'));
-// };
+const getLoginPage = (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/views' , 'login.html'))
+}
 
-// const loadHomePage = (req, res) => {
-//   res.sendFile(path.join(__dirname, '../views', 'home.html'));
-// };
+const loadHomePage = (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/views' , 'index.html'))
+}
 
 const logout = (req, res) => {
   res.clearCookie('userToken');
@@ -105,8 +105,8 @@ module.exports = {
   createUser,
   authenticate,
   verifyUser,
-  // getRegisterPage,
-  // getLoginPage,
-  // loadHomePage,
+  getRegisterPage,
+  getLoginPage,
+  loadHomePage,
   logout,
 };
