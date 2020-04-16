@@ -4,12 +4,12 @@ const path = require('path');
 const User = require('../methods/Users');
 
 const createUser = (req, res) => {
-  const { name, username, email, password, address } = req.body;
+  const { name, username, email, password, address, state, zip, phone_number } = req.body;
 
   const saltRounds = 8;
   bcrypt.hash(password, saltRounds)
     .then((hashedPassword) => {
-      User.createUser(name, username, email, hashedPassword, address);
+      User.createUser(name, username, email, hashedPassword, address, state, zip, phone_number);
       return jwt.sign({
         username,
         email,
@@ -86,6 +86,7 @@ const verifyUser = async(req, res, next) => {
 
 const getRegisterPage = (req, res) => {
   res.sendFile(path.join(__dirname ,'../public/views' , 'register.html'))
+<<<<<<< HEAD
 }
 
 const getLoginPage = (req, res) => {
@@ -95,6 +96,17 @@ const getLoginPage = (req, res) => {
 const loadHomePage = (req, res) => {
   res.sendFile(path.join(__dirname ,'../public/views' , 'index.html'))
 }
+=======
+};
+
+const getLoginPage = (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/views' , 'login.html'))
+};
+
+const getHomePage = (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/views' , 'index.html'))
+};
+>>>>>>> origin/master
 
 const logout = (req, res) => {
   res.clearCookie('userToken');
@@ -107,6 +119,10 @@ module.exports = {
   verifyUser,
   getRegisterPage,
   getLoginPage,
+<<<<<<< HEAD
   loadHomePage,
+=======
+  getHomePage,
+>>>>>>> origin/master
   logout,
 };
