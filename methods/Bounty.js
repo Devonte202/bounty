@@ -1,9 +1,9 @@
 const db = require('../db');
 
 class Bounty {
-  static createBounty(user_id,img, cost, info, category , location) {
-    const queryText = 'INSERT INTO bounties (owner, thumbnail, cost, info, category, location) VALUES ($1, $2, $3, $4, $5, $6);';
-    return db.query(queryText, [user_id, img, cost, info, category, location]);
+  static createBounty(name, user_id, img, cost, info, category , location) {
+    const queryText = 'INSERT INTO bounties (owner, thumbnail, cost, info, category, location, name) VALUES ($1, $2, $3, $4, $5, $6, $7);';
+    return db.query(queryText, [user_id, img, cost, info, category, location, name]);
   }
   static updateBounty(user_id, cost, category, info, location){
   	const queryText = 'UPDATE bounties SET cost = $2, category = $3, info = $4, location = $5 WHERE owner = $1;';
@@ -22,7 +22,7 @@ class Bounty {
   }
 
   static getAllBounties() {
-    const queryText = 'SELECT * FROM bounites;';
+    const queryText = 'SELECT * FROM bounties;';
     return db.query(queryText)
     	.then((data) => data.rows);
   }

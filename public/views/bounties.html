@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bounty.io</title>
+    <link rel="stylesheet" href="../styles/bulma/css/bulma.css" type="text/css" />
+    <link rel="stylesheet" href="../styles/styles.css" type="text/css" />
+    <link rel="stylesheet" href="../styles/forms.css" type="text/css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <img src="https://pngimg.com/uploads/bullets/bullets_PNG35611.png" width="112" height="28">
+        </a>
+    
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">
+          Home
+        </a>
+  
+        <a class="navbar-item" href="/bounty-board">
+          Bounty Board
+        </a>
+  
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More
+          </a>
+  
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="/team">
+              Team
+            </a>
+            <a class="navbar-item" href="https://github.com/Devonte202/bounty">
+              Github Repo
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <button class="button is-primary" id="addBounty">
+              <strong>Add Bounty</strong>
+            </button>
+            <a class="button is-light" href="/api/logout">
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+    <div class="modal" id="modal">
+      <form action="/add-bounty" method="post">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">New Bounty</p>
+        </header>
+          <section class="modal-card-body">
+              <div class="field">
+                <label class="label">Bounty Name</label>
+                <div class="control has-icons-left has-icons-right">
+                  <input class="input" type="text" name="name" placeholder="e.g. Atari 9000">
+                  <span class="icon is-small is-right">
+                    <i class="fas fa-check"></i>
+                  </span>
+                </div>
+                <p class="help">Enter a name for your bounty</p>
+          </div>
+              
+              <div class="field has-addons">
+                <p class="control">
+                   <p class="control">
+                      <a class="button is-static">
+                        USD
+                      </a>
+                    </p>
+                </p>
+                <p class="control">
+                  <input class="input is-success" type="number" name="cost" placeholder="Amount of money">
+                </p>
+          </div>
+              
+              <div class="field">
+                <label class="label">Category</label>
+                <div class="control">
+                  <div class="select">
+                    <select name="category">
+                      <option>Video Games</option>
+                      <option>Clothing</option>
+                      <option>Sneakers</option>
+                      <option>Free Bounty</option>
+                      <option>Random</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="file has-name is-fullwidth">
+                <label class="file-label">
+                  <input class="file-input" type="file" name="img">
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Choose an image…
+                    </span>
+                  </span>
+                </label>
+              </div>
+              
+              <div class="field">
+                <label class="label">Description</label>
+                <div class="control">
+                  <textarea class="textarea" placeholder="Describe the item/info" name="info"></textarea>
+                </div>
+          </div>
+          </section>
+          <footer class="modal-card-foot">
+              <div class="field is-grouped">
+                <div class="control">
+                   <input class="button is-success" type="submit" value="Publish"/>
+                </div>
+                <div class="control">
+                  <button class="button is-link is-light" id="cancelButton">Cancel</button>
+                </div>
+              </div>
+          </footer>
+        </div>
+      </form>
+    </div>
+    
+    <section>
+      <main id="bounties"></main>
+    </section>
+    
+    <script type="text/javascript" src="../src/modal.js"></script>
+    <script type="text/javascript" src="../src/bounty-generate.js"></script>
+</body>
+</html>
