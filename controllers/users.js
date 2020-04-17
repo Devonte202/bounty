@@ -72,9 +72,8 @@ const verifyUser = async(req, res) => {
         password,
         expiresIn: '1h',
       }, 'Do Not Open', (err, encryptedPayload) => {
-        console.log(encryptedPayload)
         res.cookie('userToken', encryptedPayload, { httpOnly: true });
-        res.redirect('/');
+        res.redirect('/home');
       });
     }
 
@@ -97,6 +96,10 @@ const getHomePage = (req, res) => {
   res.sendFile(path.join(__dirname ,'../public/views' , 'index.html'))
 };
 
+const getLoggedInPage = (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/views' , 'home.html'))
+};
+
 
 const logout = (req, res) => {
   res.clearCookie('userToken');
@@ -110,5 +113,6 @@ module.exports = {
   getRegisterPage,
   getLoginPage,
   getHomePage,
+  getLoggedInPage,
   logout,
 };
