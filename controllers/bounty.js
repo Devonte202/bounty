@@ -6,7 +6,7 @@ const createBounty =  async (req,res) =>{
     const userID = req.user_id
 		const { thumbnail, cost, info, category, location} = req.body;
 		await Bounty.createBounty( userID , thumbnail, cost, info, category, location);
-	 	res.redirect('/');
+	 	res.redirect('/home');
   } catch (err) {
     res.status(500).json({ error: 'Internal Server Error: Could not create bounty. Please try again.' });
   }
@@ -30,7 +30,7 @@ const updateBounty = async (req, res) => {
   const { id, cost, category, info, location} = req.body;
   try {
     await Bounty.updateBounty(id, cost, category, info, location);
-    return res.redirect('/');
+    return res.redirect('/home');
   } catch (err) {
     return res.status(500).json({ error: 'Internal Server Error: Bounty could not be updated.' });
   }

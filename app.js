@@ -14,6 +14,8 @@ app.set('view engine', 'ejs')
 
 app.get('/', userController.getHomePage)
 
+app.get('/home', userController.getLoggedInPage)
+
 app.get('/login', userController.getLoginPage)
 
 app.get('/register', userController.getRegisterPage)
@@ -21,6 +23,8 @@ app.get('/register', userController.getRegisterPage)
 app.post('/api/register', userController.createUser)
 
 app.post('/api/login', userController.verifyUser)
+
+app.get('/api/logout', userController.logout)
 
 
 app.listen(port, () => {
