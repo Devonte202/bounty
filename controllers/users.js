@@ -34,13 +34,13 @@ const authenticate = async(req, res, next) => {
   try {
     const user = await User.getUserByEmail(email);
 
-    req.body.userId = user.id;
+    req.userId = user.user_id;
 
     if (!user) {
       return res.status(403).send('Unauthorized User: User does not exist.');
     }
 
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    const isValidPassword = await bcrypt.compare(password, user.hashed_password);
 
     if (isValidPassword) {
       return next();
