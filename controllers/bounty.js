@@ -1,12 +1,13 @@
 const path = require('path');
-const Bounty = require('../methods/bounty');
+const Bounty = require('../methods/Bounty');
 
 const createBounty =  async (req,res) =>{
 	try{
-    const userID = req.user_id
-		const { thumbnail, cost, info, category, location} = req.body;
-		await Bounty.createBounty( userID , thumbnail, cost, info, category, location);
-	 	res.redirect('/home');
+    const userID = req.userId
+    const location = req.user.state
+		const { name, img, cost, info, category} = req.body;
+		Bounty.createBounty( name, userID , img, cost, info, category, location);
+	 	res.redirect('/bounty-board');
   } catch (err) {
     res.status(500).json({ error: 'Internal Server Error: Could not create bounty. Please try again.' });
   }
@@ -44,8 +45,9 @@ const deleteBounty = (req, res) => {
     .then(() => res.redirect('/'))
     .catch(() => res.status(500).json({ error: 'Internal Server Error: Bounty could not be deleted.' }));
 };
-const getAllBounties = () =>{
-	console.log(Bounty.getAllBounties())
+const getAllBounties = async (req, res) =>{
+	const bounties = await Bounty.getAllBounties()
+	res.send(bounties)
 }
 	
 module.exports = {
