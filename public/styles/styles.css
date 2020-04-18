@@ -25,3 +25,16 @@
 .tile{
     margin-bottom: 15px;
 }
+
+.bountyCard{
+    width: 300px;
+    margin: 10px;
+}
+
+#bounties{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
