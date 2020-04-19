@@ -11,7 +11,7 @@ class Bounty {
   		.then((data) => data.rows)
   }
   static deleteBounty(bountyId, user_id){
-  	const queryText = 'DELETE FROM bounties WHERE id = $1 AND owner = $2;';
+  	const queryText = 'DELETE FROM bounties WHERE bounty_id = $1 AND owner = $2;';
   	return db.query(queryText, [bountyId, user_id]);
   }
 

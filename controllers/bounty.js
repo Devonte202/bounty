@@ -15,12 +15,12 @@ const createBounty =  async (req,res) =>{
 
 const getUsersBounties = async (req, res) => {
   try {
-    const { userId } = req.body;
+    const userId = req.userId;
     const result = await Bounty.getUsersBounties(userId);
     if (result.length === 0) {
       return res.json('There are no bounties yet.');
     }
-    return res.json(result);
+    return res.send(result);
   } catch (err) {
     return res.status(500).json({ error: 'Internal Server Error: Could not get all bounties from the user.' });
   }
@@ -38,13 +38,15 @@ const updateBounty = async (req, res) => {
 };
 
 const deleteBounty = (req, res) => {
-  const { bountyId } = req.params;
-  const { userId } = req.body;
+  const bountyId = req.params.id;
+  console.log(bountyId)
+  const userId = req.userId;
+  console.log(userId)
   Bounty.deleteBounty(bountyId, userId)
-    .then(() => res.status(204).json({ message: 'Bounty successfully deleted.' }))
-    .then(() => res.redirect('/'))
+    .then(() => res.redirect('/account'))
     .catch(() => res.status(500).json({ error: 'Internal Server Error: Bounty could not be deleted.' }));
 };
+
 const getAllBounties = async (req, res) =>{
 	const bounties = await Bounty.getAllBounties()
 	res.send(bounties)
