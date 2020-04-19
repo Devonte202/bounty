@@ -7,7 +7,7 @@ class Bounty {
   }
   static updateBounty(user_id, bountyId, cost, category, info, name){
   	const queryText = 'UPDATE bounties SET cost = $3, category = $4, info = $5, name = $6 WHERE owner = $1 AND bounty_id = $2;';
-  	return db.query(queryText,[user_id,bountyId, cost, category, info, name])
+  	return db.query(queryText,[user_id, bountyId, cost, category, info, name])
   		.then((data) => data.rows)
   }
   static deleteBounty(bountyId, user_id){
@@ -25,6 +25,11 @@ class Bounty {
     const queryText = 'SELECT * FROM bounties;';
     return db.query(queryText)
     	.then((data) => data.rows);
+  }
+  
+  static claimBounty(bountyId, user_id){
+    const queryText = 'UPDATE  bounties SET is_claimed = NOT is_claimed WHERE bounty_id = $1 AND owner = $2;';
+    return db.query(queryText, [bountyId, user_id]);
   }
 }
 
