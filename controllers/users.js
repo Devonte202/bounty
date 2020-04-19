@@ -26,19 +26,26 @@ const createUser = (req, res) => {
 };
 
 const authenticate = async(req, res, next) => {
-  if (!req.cookies.userToken) {
+  const token = req.cookies.userToken
+  
+  if (!token) {
     return res.status(401).send('Only logged in users can access this page.');
   }
-  const payload = jwt.verify(req.cookies.userToken, 'Do Not Open');
+  const payload = await jwt.verify(token, 'Do Not Open', (err, decoded) =>{
+    if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' })
+    return decoded
+  });
+  
   const { email, password } = payload;
   try {
     const user = await User.getUserByEmail(email);
 
-    req.userId = user.user_id;
-
     if (!user) {
       return res.status(403).send('Unauthorized User: User does not exist.');
     }
+    
+    req.userId = user.user_id;
+    req.user = user
 
     const isValidPassword = await bcrypt.compare(password, user.hashed_password);
 
@@ -72,9 +79,8 @@ const verifyUser = async(req, res) => {
         password,
         expiresIn: '1h',
       }, 'Do Not Open', (err, encryptedPayload) => {
-        console.log(encryptedPayload)
         res.cookie('userToken', encryptedPayload, { httpOnly: true });
-        res.redirect('/');
+        res.redirect('/home');
       });
     }
 
@@ -97,6 +103,17 @@ const getHomePage = (req, res) => {
   res.sendFile(path.join(__dirname ,'../public/views' , 'index.html'))
 };
 
+const getLoggedInPage = (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/views' , 'home.html'))
+};
+
+const getBountyBoard = (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/views' , 'bounties.html'))
+};
+
+const getAccount = (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/views' , 'account.html'))
+};
 
 const logout = (req, res) => {
   res.clearCookie('userToken');
@@ -110,5 +127,8 @@ module.exports = {
   getRegisterPage,
   getLoginPage,
   getHomePage,
+  getLoggedInPage,
+  getBountyBoard,
+  getAccount,
   logout,
 };

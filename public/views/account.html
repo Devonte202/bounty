@@ -53,12 +53,6 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <button class="button is-primary" id="addBounty">
-              <strong>Add Bounty</strong>
-            </button>
-            <a class="button is-primary is-outlined" href="/account">
-              My Account
-            </a>
             <a class="button is-light" href="/api/logout">
               Logout
             </a>
@@ -68,23 +62,23 @@
     </div>
   </nav>
     <div class="modal" id="modal">
-      <form action="/add-bounty" method="post">
+      <form action="/update-bounty" method="post">
         <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
-            <p class="modal-card-title">New Bounty</p>
-        </header>
+            <p class="modal-card-title">Edit Bounty</p>
+          </header>
           <section class="modal-card-body">
               <div class="field">
                 <label class="label">Bounty Name</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input" type="text" name="name" placeholder="e.g. Atari 9000">
+                  <input class="input" type="text" name="name" placeholder="e.g. Atari 9000" id="name">
                   <span class="icon is-small is-right">
                     <i class="fas fa-check"></i>
                   </span>
                 </div>
                 <p class="help">Enter a name for your bounty</p>
-          </div>
+              </div>
               
               <div class="field has-addons">
                 <p class="control">
@@ -95,7 +89,7 @@
                     </p>
                 </p>
                 <p class="control">
-                  <input class="input is-success" type="number" name="cost" placeholder="Amount of money">
+                  <input class="input is-success" type="number" name="cost" placeholder="Amount of money" id="cost">
                 </p>
           </div>
               
@@ -103,7 +97,7 @@
                 <label class="label">Category</label>
                 <div class="control">
                   <div class="select">
-                    <select name="category">
+                    <select name="category" id="category">
                       <option>Video Games</option>
                       <option>Clothing</option>
                       <option>Sneakers</option>
@@ -116,7 +110,7 @@
     
               <div class="file has-name is-fullwidth">
                 <label class="file-label">
-                  <input class="file-input" type="file" name="img">
+                  <input class="file-input" type="file" name="img" id="img">
                   <span class="file-cta">
                     <span class="file-icon">
                       <i class="fas fa-upload"></i>
@@ -131,14 +125,14 @@
               <div class="field">
                 <label class="label">Description</label>
                 <div class="control">
-                  <textarea class="textarea" placeholder="Describe the item/info" name="info"></textarea>
+                  <textarea class="textarea" placeholder="Describe the item/info" name="info" id="info"></textarea>
                 </div>
           </div>
           </section>
           <footer class="modal-card-foot">
               <div class="field is-grouped">
                 <div class="control">
-                   <input class="button is-success" type="submit" value="Publish"/>
+                   <input class="button is-success" type="submit" value="Update"/>
                 </div>
                 <div class="control">
                   <button class="button is-link is-light" id="cancelButton">Cancel</button>
@@ -150,10 +144,10 @@
     </div>
     
     <section id="bounty-container">
-      <main id="bounties"></main>
+      <main id="user-bounties"></main>
     </section>
     
-    <script type="text/javascript" src="../src/modal.js"></script>
-    <script type="text/javascript" src="../src/bounty-generate.js"></script>
+    <script type="text/javascript" src="../src/user-bounties.js"></script>
+    <script type="text/javascript" src="../src/update-modal.js"></script>
 </body>
 </html>
