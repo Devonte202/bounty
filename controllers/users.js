@@ -111,6 +111,9 @@ const getBountyBoard = (req, res) => {
   res.sendFile(path.join(__dirname ,'../public/views' , 'bounties.html'))
 };
 
+const getAccount = (req, res) => {
+  res.sendFile(path.join(__dirname ,'../public/views' , 'account.html'))
+};
 
 const logout = (req, res) => {
   res.clearCookie('userToken');
@@ -126,5 +129,6 @@ module.exports = {
   getHomePage,
   getLoggedInPage,
   getBountyBoard,
+  getAccount,
   logout,
 };

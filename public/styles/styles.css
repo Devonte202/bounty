@@ -37,4 +37,10 @@
     justify-content: center;
 }
 
+#user-bounties{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 

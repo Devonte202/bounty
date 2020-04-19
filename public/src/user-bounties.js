@@ -1,7 +1,7 @@
-const bounties = document.getElementById('bounties')
+const userBounties = document.getElementById('user-bounties')
 
 window.addEventListener('load', (e) =>{
-    fetch('/api/get-bounties')
+    fetch('/api/get-user-bounties')
     .then((arr) => arr.json())
     .then((bountyJSON) => {
         for(let bounty of bountyJSON){
@@ -35,15 +35,16 @@ window.addEventListener('load', (e) =>{
                 </div>
               </div>
               <footer class="card-footer">
-                <a href="#" class="card-footer-item">Claim</a>
-                <a href="#" class="card-footer-item">Save</a>
-                <a href="#" class="card-footer-item">Flag</a>
+                <button class="button updateBounty card-footer-item">Update</button>
+                <form action="/api/delete/${bounty.bounty_id}" method="post">
+                    <input class="card-footer-item" type="submit" value="Delete">
+                </form>
               </footer>
             `
             const cardWrapper = document.createElement('div')
             cardWrapper.classList.add('card-wrapper')
             cardWrapper.appendChild(bountyCard)
-            bounties.appendChild(cardWrapper)
+            userBounties.appendChild(cardWrapper)
         }
     })
 })
