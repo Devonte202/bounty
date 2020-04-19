@@ -4,6 +4,9 @@ window.addEventListener('load', (e) =>{
     fetch('/api/get-user-bounties')
     .then((arr) => arr.json())
     .then((bountyJSON) => {
+        if(bountyJSON[0].bounty_id === undefined){
+            return null;
+        } 
         for(let bounty of bountyJSON){
             let d = new Date(bounty.date_added)
             let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -46,5 +49,27 @@ window.addEventListener('load', (e) =>{
             cardWrapper.appendChild(bountyCard)
             userBounties.appendChild(cardWrapper)
         }
+        return bountyJSON
+    })
+    .then((bountyJSON) => {
+        const updateBountyButtons = document.getElementsByClassName('updateBounty')
+        const modal = document.getElementById('modal')
+        const form = document.getElementById('form')
+        const name = document.getElementById('name')
+        const cost = document.getElementById('cost')
+        const info = document.getElementById('info')
+        
+        
+        for(let button = 0; button < bountyJSON.length; button += 1){
+            updateBountyButtons[button].addEventListener('click', (e) =>{
+                modal.classList.add("is-active")
+                form.setAttribute("action", `/api/update-bounty/${bountyJSON[button].bounty_id}`);
+                name.setAttribute("value", bountyJSON[button].name)
+                cost.setAttribute("value", bountyJSON[button].cost)
+                info.setAttribute("placeholder", bountyJSON[button].info)
+            })
+        }
+
+        
     })
 })

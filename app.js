@@ -42,6 +42,7 @@ app.get('/api/get-user-bounties', userController.authenticate, bountyController.
 
 app.post('/api/delete/:id', userController.authenticate, bountyController.deleteBounty)
 
+app.post('/api/update-bounty/:id', userController.authenticate, bountyController.updateBounty)
 
 app.listen(port, () => {
 	console.log(`Now listening on port ${port}`)

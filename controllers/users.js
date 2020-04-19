@@ -17,7 +17,7 @@ const createUser = (req, res) => {
         exp: Math.floor(Date.now() / 1000) + (15 * 60),
       }, 'Do Not Open', (err, encryptedPayload) => {
         res.cookie('userToken', encryptedPayload, { httpOnly: true });
-        res.redirect('/');
+        res.redirect('/login');
       });
     })
     .catch((err) => {

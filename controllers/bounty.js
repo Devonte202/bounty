@@ -27,11 +27,12 @@ const getUsersBounties = async (req, res) => {
 };
 
 const updateBounty = async (req, res) => {
-  const { bounty } = req.params;
-  const { id, cost, category, info, location} = req.body;
+  const bountyId = req.params.id;
+  const userId = req.userId;
+  const {cost, category, info, name} = req.body;
   try {
-    await Bounty.updateBounty(id, cost, category, info, location);
-    return res.redirect('/home');
+    await Bounty.updateBounty(userId, bountyId, cost, category, info, name);
+    return res.redirect('/account');
   } catch (err) {
     return res.status(500).json({ error: 'Internal Server Error: Bounty could not be updated.' });
   }
@@ -39,9 +40,7 @@ const updateBounty = async (req, res) => {
 
 const deleteBounty = (req, res) => {
   const bountyId = req.params.id;
-  console.log(bountyId)
   const userId = req.userId;
-  console.log(userId)
   Bounty.deleteBounty(bountyId, userId)
     .then(() => res.redirect('/account'))
     .catch(() => res.status(500).json({ error: 'Internal Server Error: Bounty could not be deleted.' }));
@@ -51,6 +50,14 @@ const getAllBounties = async (req, res) =>{
 	const bounties = await Bounty.getAllBounties()
 	res.send(bounties)
 }
+
+const claimBounty = async (req,res) =>{
+  const bountyId = req.params.id;
+  const userId = req.userId;
+  Bounty.claimBounty(bountyId,userId)
+    .then(() =>res.redirect('/account'))
+    .catch(() =>res.status(500).json({error:'Bounty is being crazy'}));
+}
 	
 module.exports = {
   createBounty,
@@ -58,4 +65,5 @@ module.exports = {
   updateBounty,
   deleteBounty,
   getAllBounties,
+  claimBounty,
 };
