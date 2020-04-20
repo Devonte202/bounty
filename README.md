@@ -15,6 +15,10 @@ To run this app navigate to the root directory and run `npm start` in your termi
 
 Before adding new code be sure to run `npx eslint fileName.js` and correct any errors before submitting a PR. 
 
+### Link to the live project
+
+https://bounty-io.herokuapp.com/
+
 ## Documentation
 
 ### Backend API Routes
