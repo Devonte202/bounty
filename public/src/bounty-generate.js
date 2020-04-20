@@ -36,24 +36,15 @@ window.addEventListener('load', (e) =>{
                     </div>
                   </div>
                   <footer class="card-footer">
-                    <a href="#" class=" claim card-footer-item">Claim</a>
+                    <a href="mailto:${bounty.benefactor}" class=" claim card-footer-item">Claim</a>
                   </footer>
                 `
+                console.log(bounty.benefactor)
                 const cardWrapper = document.createElement('div')
                 cardWrapper.classList.add('card-wrapper')
                 cardWrapper.appendChild(bountyCard)
                 bounties.appendChild(cardWrapper)
             }
-        }
-    })
-    .then(() =>{
-        const claimButtons = document.getElementsByClassName('claim')
-        const modal = document.getElementById('modal')
-        
-        for(let button of claimButtons){
-            button.addEventListener('click', (e) =>{
-                modal.classList.add("is-active")
-            })
         }
     })
 })

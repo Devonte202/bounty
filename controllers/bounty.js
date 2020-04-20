@@ -4,9 +4,10 @@ const Bounty = require('../methods/Bounty');
 const createBounty =  async (req,res) =>{
 	try{
     const userID = req.userId
+    const userEmail = req.user.email
     const location = req.user.state
 		const { name, img, cost, info, category} = req.body;
-		Bounty.createBounty( name, userID , img, cost, info, category, location);
+		Bounty.createBounty( name, userID , img, cost, info, category, location, userEmail);
 	 	res.redirect('/bounty-board');
   } catch (err) {
     res.status(500).json({ error: 'Internal Server Error: Could not create bounty. Please try again.' });
