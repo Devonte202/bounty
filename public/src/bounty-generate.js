@@ -39,7 +39,6 @@ window.addEventListener('load', () =>{
                     <a href="mailto:${bounty.benefactor}" class="claim card-footer-item">Claim</a>
                   </footer>
                 `
-					console.log(bounty.benefactor)
 					const cardWrapper = document.createElement('div')
 					cardWrapper.classList.add('card-wrapper')
 					cardWrapper.appendChild(bountyCard)
