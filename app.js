@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const userController = require('./controllers/users')
-const path = require('path')
 const port = process.env.PORT || 8080
 const cookieParser = require('cookie-parser')
 const bountyController = require('./controllers/bounty')
