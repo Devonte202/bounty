@@ -28,7 +28,7 @@
     "express": "^4.17.1",
     "heroku": "^7.39.2",
     "jsonwebtoken": "^8.5.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "pg": "^8.0.2"
   }
 }
